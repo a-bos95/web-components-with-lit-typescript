@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Lit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script type="module" src="/src/learn-lit.ts"></script>
+
+    <style>
+      header {
+        background-color: red;
+      }
+
+      body {
+        /* Le custom property, pur essendo definite all'esterno dello scope dello Shadow DOM, come in questo caso, se richiamate all'interno del componente, lo modificano perché sono in grado di oltrepassare il "perimetro" tra DOM e shadow DOM */
+        --primary-color: cyan;
+        --on-primary-color: black;
+      }
+
+      img {
+        width: 75%;
+        height: 75%;
+      }
+      
+      learn-lit::part(logo-bg) {
+        border: 1px solid green;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>Questo header è fuori dallo scope dello shadow DOM</header>
+    <p>Anche l'elemento <code>learn-lit</code> è di per sé al di fuori dello shadow DOM</p>
+    <learn-lit
+      header="Hello"
+      sub-header="My name is"
+      name="Andrea"
+      has-logo>
+      <img slot="logo" src="https://lit.dev/images/logo.svg#flame" alt="">
+    </learn-lit>
+
+    <learn-lit></learn-lit>
+    <learn-lit></learn-lit>
+    <learn-lit></learn-lit>
+    <learn-lit></learn-lit>
+  </body>
+</html>
